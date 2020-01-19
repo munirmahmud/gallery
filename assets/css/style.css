@@ -1,0 +1,73 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+.container {
+    max-width: 1140px;
+}
+.gallery-items {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+    width: 100%;
+    align-items: stretch;
+    grid-gap: 20px;
+}
+
+.gallery-items img {
+    width: 100%;
+    object-fit: cover;
+}
+
+/* Modal */
+.modal-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    width: 100%;
+    height: 100%;
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    opacity: 0;
+    transition: opacity .4s;
+    pointer-events: none;
+}
+.modal-contents {
+    min-width: 700px;
+    background: #fff;
+    padding: 10px;
+    transform: translateY(-100%);
+    box-shadow: 0 0 10px 10px rgba(0, 0, 0, 0.05);
+    transition: all 0.5s;
+    max-width: 1000px;
+    height: calc(100vh - 100px);
+    color: #000000;
+}
+.modal-contents figure {
+    height: 100%;
+    display: grid;
+    margin: 0;
+    grid-template-rows: 1fr auto;
+}
+.modal-contents figure img {
+    width: 100%;
+	height: auto;
+}
+.modal-contents figcaption {
+	padding: 10px;
+}
+.modal-contents figcaption h2,
+.modal-contents figcaption p {
+	color: #000;
+}
+.modal-container.open {
+	opacity: 1;
+	pointer-events: all;
+}
+.modal-container.open .modal-contents {
+	transform: translateY(0);
+}
+
