@@ -1,9 +1,16 @@
 * {
 	margin: 0;
 	padding: 0;
+	font-family: sans-serif;
 }
 .container {
     max-width: 900px;
+    margin: 100px auto;
+}
+h2.title {
+	margin-bottom: 50px;	
+	text-align: center;
+	font-size: 	26px;
 }
 .gallery {
 	margin-bottom: 100px;
