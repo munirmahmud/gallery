@@ -9,6 +9,12 @@ function Gallery(gallery) {
 	const prevButton = modal.querySelector('.prev');
 	const nextButton = modal.querySelector('.next');
 
+	function openModal() {
+		if (!modal.matches('open')) {
+			modal.classList.add('open');
+		}
+	}
+
 	function showImage(el) {
 		if (!el) {
 			console.info('No image to show');
@@ -20,6 +26,8 @@ function Gallery(gallery) {
 		modal.querySelector('h2').textContent = el.title;
 		modal.querySelector('p').textContent = el.dataset.description;
 
+		// Open modal 
+		openModal();
 	}
 
 	images.forEach(image => image.addEventListener('click', e => showImage(e.currentTarget)));
