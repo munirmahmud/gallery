@@ -5,11 +5,14 @@
 }
 .container {
     max-width: 900px;
-    margin: 100px auto;
+    margin: 60px auto;
+}
+.container > h1 {
+	text-align: center;	
+	margin-bottom: 50px;
 }
 h2.title {
-	margin-bottom: 50px;	
-	text-align: center;
+	margin-bottom: 35px;	
 	font-size: 	26px;
 }
 .gallery {
@@ -80,7 +83,7 @@ h2.title {
 }
 .modal-contents figure img {
     width: 100%;
-	height: auto;
+	height: 100%;
 }
 .modal-contents figcaption {
 	padding: 10px;
