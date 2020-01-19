@@ -8,10 +8,24 @@ function Gallery(gallery) {
 	const modal = document.querySelector('.modal-container');
 	const prevButton = modal.querySelector('.prev');
 	const nextButton = modal.querySelector('.next');
+	let currentImage;
 
 	function openModal() {
-		if (!modal.matches('open')) {
-			modal.classList.add('open');
+		//Check if the modal is already open 
+		if (modal.matches('open')) {
+			console.info('Modal is already open');
+			return;
+		}
+		modal.classList.add('open');
+	}
+
+	function closeModal() {
+		modal.classList.remove('open');
+	}
+
+	function handleClickOutsideModal(e) {
+		if (e.target === e.currentTarget) {
+			closeModal();
 		}
 	}
 
@@ -25,13 +39,16 @@ function Gallery(gallery) {
 		modal.querySelector('img').src = el.src;
 		modal.querySelector('h2').textContent = el.title;
 		modal.querySelector('p').textContent = el.dataset.description;
+		currentImage = el;
 
 		// Open modal 
 		openModal();
 	}
 
+	// Event listeners
 	images.forEach(image => image.addEventListener('click', e => showImage(e.currentTarget)));
-	console.log(images)
+	console.log(images);
+	modal.addEventListener('click', handleClickOutsideModal);
 }
 
 Gallery(document.querySelector('.gallery1'))
