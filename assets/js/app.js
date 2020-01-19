@@ -1,5 +1,5 @@
 function Gallery(gallery) {
-	if (!gallery) {
+	if (!(gallery instanceof Element)) {
 		throw new Error('No gallery found');
 	}
 
@@ -17,16 +17,39 @@ function Gallery(gallery) {
 			return;
 		}
 		modal.classList.add('open');
+
+
+		window.addEventListener('keydown', handleKeyDown);
+		nextButton.addEventListener('click', showNextImage);
+		prevButton.addEventListener('click', showPrevImage);
 	}
 
 	function closeModal() {
 		modal.classList.remove('open');
+
+		window.removeEventListener('keydown', handleKeyDown);
+		nextButton.removeEventListener('click', showNextImage);
+		prevButton.removeEventListener('click', showPrevImage);
 	}
 
 	function handleClickOutsideModal(e) {
 		if (e.target === e.currentTarget) {
 			closeModal();
 		}
+	}
+
+	function handleKeyDown(e) {
+		if (e.key === 'Escape') return closeModal();
+		if (e.key === 'ArrowRight') return showNextImage();
+		if (e.key === 'ArrowLeft') return showPrevImage();
+	}
+
+	function showNextImage() {
+		showImage(currentImage.nextElementSibling || gallery.firstElementChild);
+	}
+
+	function showPrevImage() {
+		showImage(currentImage.previousElementSibling || gallery.lastElementChild);
 	}
 
 	function showImage(el) {
@@ -47,8 +70,17 @@ function Gallery(gallery) {
 
 	// Event listeners
 	images.forEach(image => image.addEventListener('click', e => showImage(e.currentTarget)));
-	console.log(images);
 	modal.addEventListener('click', handleClickOutsideModal);
+
+	// Loop over each image
+	images.forEach(image => image.addEventListener('keydown', e => {
+		//Attach an eventlister for each image
+		// When press enter show the modal for the current image
+		if (e.key === 'Enter') {
+			showImage(e.currentTarget);
+		}
+	}));
+	
 }
 
 Gallery(document.querySelector('.gallery1'))
