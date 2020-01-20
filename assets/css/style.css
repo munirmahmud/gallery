@@ -101,3 +101,21 @@ h2.title {
 	    -ms-transform: translateY(0);
 	        transform: translateY(0);
 }
+
+.modal-buttons .prev,
+.modal-buttons .next {
+    position: absolute;
+    top: 50%;
+    background: transparent;
+    border: 0px;
+    color: #fff;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 32px;
+}
+.modal-buttons .prev {
+    left: 20px;    
+}
+.modal-buttons .next {
+    right: 20px;
+}
